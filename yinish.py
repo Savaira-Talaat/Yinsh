@@ -52,12 +52,12 @@ class Game:
     def __init__(self):
         self.board = Board()
         self.currentPlayer = "Q"
-        self.blackMarker = "Q"
-        self.blackRing = "c"
-        self.whiteMarker = "@"
-        self.whiteRing = "o"
-        self.markersCount = {"Q" : 0, "@" : 0}
-        self.maxMarkers = 5
+        self.blackRing = "Q"
+        self.blackMarker = "c"
+        self.whiteRing = "@"
+        self.whiteMarker = "o"
+        self.ringCount = {"Q" : 0, "@" : 0}
+        self.maxRings = 5
                 
     def switchPlayer(self):
         if self.currentPlayer == "Q":
@@ -65,13 +65,13 @@ class Game:
         else:
             self.currentPlayer = "Q"
     
-    def canPlaceMarkers(self):
-        return self.markersCount["Q"] < self.maxMarkers or self.markersCount["@"] < self.maxMarkers
+    def canPlaceRings(self):
+        return self.ringCount["Q"] < self.maxRings or self.ringCount["@"] < self.maxRings
             
     def play(self):
-        while self.canPlaceMarkers():
+        while self.canPlaceRings():
             self.board.displayBoard()
-            if self.markersCount[self.currentPlayer] < self.maxMarkers:
+            if self.ringCount[self.currentPlayer] < self.maxRings:
                 print(f"C'est au tour du joueur {self.currentPlayer}")
                 try:
                     x = int(input("Saisissez les coordonnées x de la case où vous souhaitez vous rendre : ")) - 1
@@ -81,15 +81,15 @@ class Game:
                     continue
             
                 if self.board.make_move(x, y, self.currentPlayer):
-                    self.markersCount[self.currentPlayer] += 1
+                    self.ringCount[self.currentPlayer] += 1
                     self.switchPlayer()
                 else:
                     print("Coordonnées invalides ou case non disponible. Veuillez réessayer.")
             else:
-                print(f"Le joueur {self.currentPlayer} a déjà placé ses marqueurs")
+                print(f"Le joueur {self.currentPlayer} a déjà placé ses anneaux")
                 self.switchPlayer()
                 
-        print("Tous les marqueurs ont été placés, la partie peut commencer")
+        print("Tous les anneaux ont été placés, la partie peut commencer")
         self.board.displayBoard()
         
 if __name__ == "__main__":
