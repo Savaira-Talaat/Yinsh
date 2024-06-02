@@ -231,7 +231,7 @@ class Game:
         self.blueNumberAlignment = 0
         self.ringCount = {"Q": 0, "@": 0}
         self.clock = pygame.time.Clock()
-        self.maxRing = 3
+        self.maxRing = 6
         self.state = "placing_markers"  # Other state is "moving_ring"
         self.selected_marker = None
 
@@ -323,7 +323,7 @@ class Game:
             print("Joueur", self.currentPlayer, "a gagné!")
         else:
             self.switchPlayer()
-        self.state = "placing_markers"
+        self.state = "moving_ring"
         self.selected_marker = None
         
 
@@ -445,7 +445,8 @@ class Game:
 
             clock.tick(30)
         pygame.quit()
-        
+    
+    
         
 if __name__ == "__main__":
     game = Game()
