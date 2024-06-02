@@ -271,7 +271,7 @@ class Game:
                     self.state = "removing_ring"  # Passage à l'état de retrait d'un anneau
             elif self.state == "removing_ring":
                 if self.board.board[row][col] == self.currentPlayer:  # Vérification que l'anneau appartient au joueur
-                    self.board.board[row][col] = 1  # Retrait de l'anneau
+                    self.board.board[row][col] = 1  # Retirer l'anneau
                     self.state = "moving_ring"  # Retour à l'état de déplacement d'un anneau
     
     def selectMarkersPlacement(self):
