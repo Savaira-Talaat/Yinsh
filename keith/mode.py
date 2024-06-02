@@ -5,6 +5,8 @@ from pygame.locals import QUIT, MOUSEBUTTONDOWN
 
 pygame.init()
 
+
+
 # Constants
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
@@ -274,7 +276,7 @@ class Game:
                     self.state = "removing_ring"  # Passage à l'état de retrait d'un anneau
             elif self.state == "removing_ring":
                 if self.board.board[row][col] == self.currentPlayer:  # Vérification que l'anneau appartient au joueur
-                    self.board.board[row][col] = 1  # Retrait de l'anneau
+                    self.board.board[row][col] = 1  # Retirer l'anneau
                     self.state = "moving_ring"  # Retour à l'état de déplacement d'un anneau
     
     def selectMarkersPlacement(self):
@@ -434,7 +436,7 @@ class Game:
     
     def play(self):
         pygame.init()
-        screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.RESIZABLE)
+        screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Board Game")
         clock = pygame.time.Clock()
 
