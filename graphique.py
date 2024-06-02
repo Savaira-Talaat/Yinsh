@@ -127,29 +127,33 @@ class Board:
             return True
         return False
     def changeMarker(self, initialRingX, deplacementRingX, initialRingY, deplacementRingY, currentPlayer):
-        if currentPlayer == "Q":
-            marker1 = "c"
-            marker2 = "o"
-        else:
-            marker1 = "o"
-            marker2 = "c"
+        marker1 = "c"
+        marker2 = "o"
 
         if initialRingX > deplacementRingX and initialRingY > deplacementRingY:
             for x, y in zip(range(initialRingX - 1, deplacementRingX, -1), range(initialRingY - 1, deplacementRingY, -1)):
                 if self.board[x][y] == marker2:
                     self.board[x][y] = marker1
+                elif self.board[x][y] == marker1:
+                    self.board[x][y] = marker2
         elif initialRingX < deplacementRingX and initialRingY > deplacementRingY:
             for x, y in zip(range(initialRingX + 1, deplacementRingX), range(initialRingY - 1, deplacementRingY, -1)):
                 if self.board[x][y] == marker2:
                     self.board[x][y] = marker1
+                elif self.board[x][y] == marker1:
+                    self.board[x][y] = marker2
         elif initialRingX < deplacementRingX and initialRingY < deplacementRingY:
             for x, y in zip(range(initialRingX + 1, deplacementRingX), range(initialRingY + 1, deplacementRingY)):
                 if self.board[x][y] == marker2:
                     self.board[x][y] = marker1
+                elif self.board[x][y] == marker1:
+                    self.board[x][y] = marker2
         elif initialRingX > deplacementRingX and initialRingY < deplacementRingY:
             for x, y in zip(range(initialRingX - 1, deplacementRingX, -1), range(initialRingY + 1, deplacementRingY)):
                 if self.board[x][y] == marker2:
                     self.board[x][y] = marker1
+                elif self.board[x][y] == marker1:
+                    self.board[x][y] = marker2
     
     def checkAligment(self, row, col):
         
@@ -231,7 +235,7 @@ class Game:
         self.blueNumberAlignment = 0
         self.ringCount = {"Q": 0, "@": 0}
         self.clock = pygame.time.Clock()
-        self.maxRing = 6
+        self.maxRing = 5
         self.state = "placing_markers"  # Other state is "moving_ring"
         self.selected_marker = None
 
